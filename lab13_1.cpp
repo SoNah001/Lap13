@@ -19,3 +19,31 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+
+void stat(const double A[],int N,double B[]){
+    double sum=0;
+    double Deviation=0;
+    double p=1;
+    double Harmonicsum=0;
+    double min=A[0];
+    double max=A[0];
+    for(int i=0;i<N;i++){
+        sum+=A[i];
+        p*=A[i];
+        Harmonicsum+=1.0/A[i];
+        if(A[i]<min) min=A[i];
+        if(A[i]>max) max=A[i];
+    }
+    double u = sum / N;
+    for (int i = 0; i < N; i++) {
+        Deviation += pow((A[i] - u), 2);
+    }
+    Deviation = sqrt(Deviation / N);
+    B[0]=u;
+    B[1]=Deviation;
+    B[2]=pow(p,1.0f/N);
+    B[3]=N/Harmonicsum;
+    B[4]=max;
+    B[5]=min;
+    
+}
